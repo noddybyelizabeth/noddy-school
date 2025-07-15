@@ -1,0 +1,64 @@
+services:
+  database:
+    image: mysql:9.3.0
+    container_name: noddy-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: noddy
+      MYSQL_DATABASE: noddy-school
+      MYSQL_USER: noddy
+      MYSQL_PASSWORD: noddy
+    volumes:
+      - noddy-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin","ping","-hnoddy-mysql" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - noddy-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: noddy-pma
+    environment:
+      PMA_HOST: database
+      PMA_USER: noddy
+      PMA_PASSWORD: noddy
+      UPLOAD_LIMIT: 300M
+    ports:
+      - "8081:80"
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - noddy-net
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: noddy-school-web:dev
+    container_name: noddy-php
+    environment:
+      ENVIRONMENT: development
+      PHP_DISPLAY_ERRORS: "1"
+      PHP_ERROR_REPORTING: "E_ALL"
+    volumes:
+      - ./src:/var/www/html:delegated
+    ports:
+      - "8080:80"
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - noddy-net
+
+volumes:
+  noddy-mysql-data:
+
+networks:
+  noddy-net:
+    driver: bridge
