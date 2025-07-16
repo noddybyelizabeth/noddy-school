@@ -42,7 +42,7 @@ $STATIC_VERSION = "1.0";
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
 	<!-- CSS -->
-	<link href="/static/css/styles.css?v=<?= $STATIC_VERSION ?>" rel="stylesheet">
+	<link href="../static/css/styles.css?v=<?= $STATIC_VERSION ?>" rel="stylesheet">
 
 	<!-- Font Awesome 6 -->
 	<script src="https://kit.fontawesome.com/7a2f4548b7.js" crossorigin="anonymous"></script>

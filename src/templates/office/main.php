@@ -6,11 +6,14 @@ namespace templates;
 
 <aside class="w-64 border-r bg-white border-gray-200">
 	<a href="/" class="text-2xl font-bold block flex ps-7 py-4">
-		<img src="/static/logo/noddy.png" width="150" alt="Logo"/>
+		<img src="../static/logo/horizontal-text-side.png" width="150" alt="Logo"/>
 	</a>
 	<nav>
 		<a href="/" class="flex items-center px-4 py-3 hover:bg-gray-100">
 			<span class="ml-3">Dashboard</span>
+		</a>
+		<a href="/messages" class="flex items-center px-4 py-3 hover:bg-gray-100">
+			<span class="ml-3">Messages</span>
 		</a>
 		<a href="/users" class="flex items-center px-4 py-3 hover:bg-gray-100">
 			<span class="ml-3">Users</span>
