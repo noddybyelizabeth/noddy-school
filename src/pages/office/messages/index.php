@@ -2,10 +2,10 @@
 
 namespace pages;
 
-use lib\Components\NDCompHeader;
-use lib\Infrastructure\Database\NDDatabase;
+use lib\Components\Header;
+use lib\Infrastructure\Database\Database;
 
-NDCompHeader::printTitle("Messages");
-NDCompHeader::printBreadcrumb();
+Header::printTitle("Messages");
+Header::printBreadcrumb();
 
-$database = NDDatabase::getInstance();
+$database = Database::getInstance();

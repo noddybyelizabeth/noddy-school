@@ -2,7 +2,7 @@
 
 namespace lib\Utilities;
 
-class NDNetwork {
+class Network {
 	public static function getCurrentSiteType(): string {
 		$serverName = $_SERVER["SERVER_NAME"];
 

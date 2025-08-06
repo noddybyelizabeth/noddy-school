@@ -12,10 +12,11 @@ $SITE_LINK = "https://noddybyelizabeth.ac.th";
 
 <?php include(__DIR__."/../shared/header.php"); ?>
 
-<body class="flex h-screen bg-gray-100 text-gray-900">
+<body class="flex max-w-screen h-screen bg-gray-100 text-gray-900 overflow-hidden">
 
 <?php include(__DIR__."/main.php"); ?>
-<?php //include(__DIR__."/sign-in.php"); ?>
+<?php //include(__DIR__."/sign-in.php");
+?>
 
 </body>
 </html>

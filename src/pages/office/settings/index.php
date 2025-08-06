@@ -2,7 +2,7 @@
 
 namespace pages;
 
-use lib\Components\NDCompHeader;
+use lib\Components\Header;
 
-NDCompHeader::printTitle("Settings");
-NDCompHeader::printBreadcrumb();
+Header::printTitle("Settings");
+Header::printBreadcrumb();

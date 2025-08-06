@@ -2,7 +2,7 @@
 
 namespace lib\Components;
 
-class NDCompHeader {
+class Header {
 	private static string|null $header = null;
 
 	public static function printTitle(string $title): void {
@@ -64,10 +64,10 @@ class NDCompHeader {
 					<i class="fas fa-left-long me-2"></i>
 					<span>Back</span>
 				</a>
-				<h2 class="text-2xl font-bold flex gap-2">
+				<h1 class="text-2xl font-bold flex gap-2">
 					<span class="text-gray-500">#</span>
 					<span class="text-gray-800">$header</span>
-				</h2>
+				</h1>
 			</div>
 		HTML;
 	}

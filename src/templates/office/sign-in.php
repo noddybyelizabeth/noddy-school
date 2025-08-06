@@ -6,7 +6,7 @@ namespace templates;
 
 <div class="w-full flex justify-center items-center">
 	<div class="bg-white px-32 py-16 rounded-xl shadow-md flex flex-col gap-8">
-		<img src="/static/logo/noddy.png" width="400" alt="Logo" />
+		<img src="../static/logo/square-no-text.png" width="400" alt="Logo"/>
 
 		<form action="#" method="POST" class="space-y-4">
 			<div>
