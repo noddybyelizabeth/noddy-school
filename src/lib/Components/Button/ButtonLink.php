@@ -2,19 +2,24 @@
 
 namespace lib\Components\Button;
 
-class ButtonSubmit extends Button {
+class ButtonLink extends Button {
 	protected function __construct(
 		string $label,
+		string $link,
 	) {
 		parent::__construct(
 			$label,
 		);
+		$this->link = $link;
 	}
 	public static function create(
 		string $label,
+		string $link,
 	): self {
-		return new self($label);
+		return new self($label, $link);
 	}
+
+	private string $link;
 
 	public function __toString(): string {
 		$id = $this->getId();
@@ -24,13 +29,13 @@ class ButtonSubmit extends Button {
 		$color = $this->getColor();
 
 		return <<<HTML
-			<button
+			<a
 				id="$id"
 				class="$defaultClasses $color"
-				type="submit"
+				href="$this->link"
 			>
 				<span>$label</span>
-			</button>
+			</a>
 		HTML;
 	}
 }

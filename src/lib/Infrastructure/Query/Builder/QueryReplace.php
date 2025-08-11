@@ -3,15 +3,12 @@
 namespace lib\Infrastructure\Query\Builder;
 
 use BackedEnum;
-use lib\Utilities\Dump;
-use lib\Infrastructure\Query\Statement;
 
-class QueryReplace implements QueryBuilder {
-	private string $table;
+class QueryReplace extends QueryBuilder {
 	private array $values;
 
-	public function __construct(string $table) {
-		$this->table = $table;
+	public function __construct(string $tableName) {
+		parent::__construct($tableName);
 	}
 
 	public function values(array $values): void {
@@ -19,12 +16,8 @@ class QueryReplace implements QueryBuilder {
 	}
 
 	public function build(): string {
-		$fieldsName = Statement::getFieldNames($this->table);
-		if (count($this->values) != count($fieldsName))
-			return "";
-
+		$fieldsName = array_keys($this->values);
 		$fieldName = implode(",", $fieldsName);
-		$fieldValuesArray = [];
 
 		$fieldValues = array_map(function ($value) {
 			if (is_null($value))
@@ -40,10 +33,8 @@ class QueryReplace implements QueryBuilder {
 		}, $this->values);
 		$fieldValues = implode(",", $fieldValues);
 
-		Dump::var($this->values);
-
 		return <<<SQL
-			REPLACE INTO `$this->table` ( $fieldName ) values ( $fieldValues )
+			REPLACE INTO `$this->tableName` ( $fieldName ) values ( $fieldValues )
 		SQL;
 	}
 }

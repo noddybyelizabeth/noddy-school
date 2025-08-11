@@ -3,6 +3,7 @@
 namespace lib\Components;
 
 use lib\Utilities\Text;
+
 abstract class Component implements ComponentRenderable {
 	private static array $randomIds = [];
 

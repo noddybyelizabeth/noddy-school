@@ -2,13 +2,8 @@
 
 namespace pages;
 
-use lib\Utilities\Text;
 use lib\Components\Header;
-use lib\Entities\User\User;
-use lib\Utilities\DateTime;
 use lib\Components\Layout\Spacer;
-use lib\Entities\User\Enums\Role;
-use lib\Entities\User\UserRepository;
 use lib\Components\Typography\Paragraph;
 use lib\Components\Layout\Container\Grid;
 use lib\Components\Layout\Container\Cell;
@@ -27,7 +22,13 @@ Paragraph::text(
 Spacer::medium()->print();
 
 FormFactory::post(
-	Grid::size1(
+	Cell::size1(
+		InputFactory::image("profile_image", "Profile Image"),
+	),
+	Grid::size3(
+		Cell::size1(
+			InputFactory::text("name_title", "Name title"),
+		),
 		Cell::size1(
 			InputFactory::text("first_name", "First name"),
 		),
@@ -35,23 +36,18 @@ FormFactory::post(
 			InputFactory::text("last_name", "Last name"),
 		),
 	),
+	Grid::size3(
+		Cell::size1(
+			InputFactory::text("email", "Email address"),
+		),
+		Cell::size1(
+			InputFactory::text("password", "Password"),
+		),
+		Cell::size1(
+			InputFactory::text("enrollment_date", "Enrollment date"),
+		),
+	),
+	Cell::size1(
+		InputFactory::textarea("remark", "Remark"),
+	),
 )->print();
-
-$password = Text::random();
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-$dateNow = new DateTime();
-
-$user = new User(-1);
-
-$user->setFirstName("Korn");
-$user->setLastName("Rojrattanapanya");
-$user->setUsername("kornyellow");
-$user->setEmail("korn.rojr@noddybyelizabeth.ac.th");
-$user->setPasswordHash($passwordHash);
-$user->setRole(Role::ADMIN);
-$user->setEnable(true);
-$user->setCreatedAt($dateNow);
-$user->setUpdatedAt($dateNow);
-
-UserRepository::replace($user);

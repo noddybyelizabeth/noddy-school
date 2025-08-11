@@ -5,7 +5,7 @@ namespace lib\Infrastructure\Query;
 use mysqli_result;
 use lib\Utilities\Dump;
 use mysqli_sql_exception;
-use lib\Infrastructure\Query\Builder\QueryBuilder;
+use lib\Infrastructure\Query\Builder\QueryBuilderInterface;
 
 class Query {
 	private array $fieldsName = [];
@@ -18,7 +18,7 @@ class Query {
 	public function __construct() {}
 
 	public static function execute(
-		QueryBuilder|string $queryString,
+		QueryBuilderInterface|string $queryString,
 	): self {
 		if (!is_string($queryString))
 			$queryString = $queryString->build();

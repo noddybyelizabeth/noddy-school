@@ -5,6 +5,7 @@ namespace lib\Entities;
 use lib\Utilities\RuntimeCache;
 use lib\Infrastructure\Query\Query;
 use lib\Infrastructure\Query\Builder\QuerySelect;
+use lib\Infrastructure\Query\Builder\QueryDelete;
 
 abstract class Repository implements RepositoryInterface {
 	protected static string $tableName;
@@ -29,6 +30,19 @@ abstract class Repository implements RepositoryInterface {
 			$cache->set($result);
 
 		return $result;
+	}
+	public static function delete(
+		null|Entity $entity,
+	): void {
+		if ($entity === null)
+			return;
+
+		$delete = new QueryDelete(self::$tableName);
+		$delete->where("id", $entity->getId());
+
+		RuntimeCache::dump();
+
+		Query::execute($delete);
 	}
 
 	public static function getObject(

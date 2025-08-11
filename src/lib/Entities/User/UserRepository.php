@@ -15,9 +15,7 @@ class UserRepository extends Repository {
 	#region Other Methods
 	public static function replace(User|Entity $entity): User {
 		$replace = new QueryReplace(self::$tableName);
-
 		$replace->values([
-			"id" => $entity->getId(),
 			"email" => $entity->getEmail(),
 			"username" => $entity->getUsername(),
 			"password_hash" => $entity->getPasswordHash(),
@@ -33,9 +31,6 @@ class UserRepository extends Repository {
 		$entity->setId($query->getInsertedId());
 
 		return $entity;
-	}
-	public static function delete(User|Entity $entity): void {
-		// TODO: implement
 	}
 	#endregion
 	#region Abstract Methods

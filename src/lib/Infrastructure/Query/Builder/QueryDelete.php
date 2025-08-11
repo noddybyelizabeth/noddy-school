@@ -2,10 +2,12 @@
 
 namespace lib\Infrastructure\Query\Builder;
 
-class QueryDelete implements QueryBuilder {
-	// TODO: Implement this
-	public function build(): string {
+class QueryDelete extends QueryBuilder {
+	public function __construct(string $tableName) {
+		parent::__construct($tableName);
+	}
 
+	public function build(): string {
 		return "";
 	}
 }

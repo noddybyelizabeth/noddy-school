@@ -2,29 +2,14 @@
 
 namespace lib\Infrastructure\Query\Builder;
 
-use lib\Infrastructure\Database\Database;
-
-class QuerySelect implements QueryBuilder {
-	private string $table;
-
-	private null|string $where = null;
+class QuerySelect extends QueryBuilder {
 	private null|string $order = null;
 	private bool $isDescending = false;
 	private null|int $limit = null;
 	private null|int $offset = null;
 
-	public function __construct(string $table) {
-		$this->table = $table;
-	}
-
-	public function where(string $column, string $value): void {
-		$database = Database::getInstance();
-		$connection = $database->getConnection();
-
-		$this->where = "$column = '$value'";
-	}
-	public function whereRaw(string $where): void {
-		$this->where = $where;
+	public function __construct(string $tableName) {
+		parent::__construct($tableName);
 	}
 
 	public function sortByColumn(string $column): void { $this->order = $column; }
@@ -47,14 +32,14 @@ class QuerySelect implements QueryBuilder {
 
 		$orderBy = "";
 		if ($this->order)
-			$orderBy = "ORDER BY $this->table.$this->order";
+			$orderBy = "ORDER BY $this->tableName.$this->order";
 
 		$where = "";
 		if ($this->where)
 			$where = "WHERE $this->where";
 
 		return <<<SQL
-			SELECT * FROM $this->table
+			SELECT * FROM $this->tableName
 			$where $orderBy
 			$descending $limit
 		SQL;

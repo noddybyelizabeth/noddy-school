@@ -2,7 +2,7 @@
 
 namespace lib\Components\Form\Inputs;
 
-class InputText extends Input {
+class InputTextarea extends Input {
 	protected function __construct(
 		private readonly string $name,
 		private readonly string $label,
@@ -31,20 +31,18 @@ class InputText extends Input {
 		$id = $this->getId();
 		return <<<HTML
 			<div class="flex flex-col gap-y-2">
-				<label for="NDCOMP_INPUT_TEXT_$id" class="font-medium">$this->label</label>
-				<input
-					id="NDCOMP_INPUT_TEXT_$id"
-					type="text"
+				<label for="NDCOMP_INPUT_TEXTAREA_$id" class="font-medium">$this->label</label>
+				<textarea
+					id="NDCOMP_INPUT_TEXTAREA_$id"
 					name="$this->name"
-					value="$this->value"
 					autocomplete="off"
 					title="Please fill in this field"
 					class="
 						border rounded-md px-3 py-1.5 bg-white
 						border-gray-300 focus:border-blue-400
-						outline-sky-500
+						outline-sky-500 min-h-64
 					"
-				/>
+				>$this->value</textarea>
 			</div>
 		HTML;
 	}

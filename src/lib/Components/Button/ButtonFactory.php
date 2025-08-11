@@ -8,4 +8,10 @@ class ButtonFactory {
 	): ButtonSubmit {
 		return ButtonSubmit::create($label);
 	}
+	public static function link(
+		string $label,
+		string $link,
+	): ButtonLink {
+		return ButtonLink::create($label, $link);
+	}
 }

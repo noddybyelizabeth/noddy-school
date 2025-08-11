@@ -6,20 +6,22 @@ class RuntimeCache {
 	private static array $cache = [];
 
 	public function __construct(
+		private readonly string $className,
+		private readonly string $functionName,
 		private readonly string $key,
 	) {}
 
 	public function isExists(): bool {
 		return isset(self::$cache[$this->key]);
 	}
-	
+
 	public function get(): mixed {
-		return self::$cache[$this->key];
+		return self::$cache[$this->className][$this->functionName][$this->key];
 	}
 	public function set(
 		mixed $data,
 	): void {
-		self::$cache[$this->key] = $data;
+		self::$cache[$this->className][$this->functionName][$this->key] = $data;
 	}
 
 	/**
@@ -31,9 +33,14 @@ class RuntimeCache {
 	): self {
 		$backtrace = debug_backtrace();
 
-		$className = $backtrace[0]["class"];
-		$functionName = $backtrace[0]["function"];
+		return new self(
+			$backtrace[0]["class"],
+			$backtrace[0]["function"],
+			implode(":", $keys),
+		);
+	}
 
-		return new self("$className:$functionName:".implode(":", $keys));
+	public static function dump(): void {
+		unset(self::$cache[debug_backtrace()[0]["class"]]);
 	}
 }

@@ -23,14 +23,14 @@ class FormPost extends Form {
 
 	public function __toString(): string {
 		$method = $this->getMethod()->value;
-		$content = implode("", $this->getContents());
+		$contents = implode("", $this->getContents());
 
 		$submitButton = ButtonFactory::submit("Submit");
 
 		return <<<HTML
 			<form method="$method" action="#">
 				<div class="flex flex-col gap-4">
-					<div>$content</div>
+					<div class="flex flex-col gap-2">$contents</div>
 					<div class="">$submitButton</div>
 				</div>
 			</form>

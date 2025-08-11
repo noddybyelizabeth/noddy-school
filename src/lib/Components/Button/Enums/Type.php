@@ -2,6 +2,9 @@
 
 namespace lib\Components\Button\Enums;
 
-enum Type: string {
-	case SUBMIT = "submit";
+enum Type {
+	case BASIC;
+	case SUCCESS;
+	case WARNING;
+	case DANGER;
 }

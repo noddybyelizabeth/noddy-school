@@ -10,4 +10,18 @@ class InputFactory {
 	): InputText {
 		return InputText::create($name, $label, $value);
 	}
+	public static function textarea(
+		string $name,
+		string $label,
+		string $value = "",
+	): InputTextarea {
+		return InputTextarea::create($name, $label, $value);
+	}
+	public static function image(
+		string $name,
+		string $label,
+		string $value = "",
+	): InputImage {
+		return InputImage::create($name, $label, $value);
+	}
 }
