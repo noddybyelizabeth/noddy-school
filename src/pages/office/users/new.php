@@ -27,7 +27,7 @@ FormFactory::post(
 	),
 	Grid::size3(
 		Cell::size1(
-			InputFactory::text("name_title", "Name title"),
+			InputFactory::select("name_title", "Name title"),
 		),
 		Cell::size1(
 			InputFactory::text("first_name", "First name"),

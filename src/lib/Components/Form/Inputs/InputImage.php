@@ -3,6 +3,7 @@
 namespace lib\Components\Form\Inputs;
 
 use lib\Components\Button\Enums\Type;
+use lib\Components\Icon\Enums\IconType;
 use lib\Components\Button\ButtonFactory;
 class InputImage extends Input {
 	protected function __construct(
@@ -32,8 +33,11 @@ class InputImage extends Input {
 	public function __toString(): string {
 		$id = $this->getId();
 
-		$buttonChange = ButtonFactory::link("Change", "")->setType(Type::SUCCESS);
-		$buttonRemove = ButtonFactory::link("Remove", "")->setType(Type::DANGER);
+		$buttonChange = ButtonFactory::link("Change", "")
+			->setIcon(IconType::FOLDER_OPEN);
+		$buttonRemove = ButtonFactory::link("Remove", "")
+			->setType(Type::DANGER)
+			->setIcon(IconType::TRASH_CAN);
 
 		return <<<HTML
 			<div class="flex flex-col gap-y-2">
@@ -42,7 +46,7 @@ class InputImage extends Input {
 					<div>
 						<img class="rounded-lg" src="../static/default-avatar.jpg" width="150" height="150" alt="User Avatar" />
 					</div>
-					<div class="flex flex-col gap-4 place-content-end">
+					<div class="flex flex-col gap-2 place-content-end">
 						<div class="flex gap-2">
 							<div>$buttonChange</div>
 							<div>$buttonRemove</div>

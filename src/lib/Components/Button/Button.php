@@ -3,10 +3,13 @@
 namespace lib\Components\Button;
 
 use lib\Components\Component;
+use lib\Components\Icon\Icon;
 use lib\Components\Button\Enums\Type;
+use lib\Components\Icon\Enums\IconType;
 
 abstract class Button extends Component {
 	private Type $type = Type::BASIC;
+	private Icon|null $icon = null;
 
 	protected function __construct(
 		private readonly string $label,
@@ -26,9 +29,14 @@ abstract class Button extends Component {
 
 	public function getLabel(): string { return $this->label; }
 
+	public function setIcon(IconType $iconType): self {
+		$this->icon = Icon::create($iconType)->setMarginRight(2);
+		return $this;
+	}
+	public function getIcon(): Icon|null { return $this->icon; }
+
 	public function setType(Type $type): self {
 		$this->type = $type;
-
 		return $this;
 	}
 	public function getType(): Type { return $this->type; }
@@ -36,9 +44,9 @@ abstract class Button extends Component {
 	public function getDefaultClasses(): string {
 		return "
 			text-white font-medium
-			px-3 py-2 rounded-md
+			px-3 py-1 rounded-md
 			cursor-pointer
-			w-full
+			block
 		";
 	}
 }

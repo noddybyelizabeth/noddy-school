@@ -40,7 +40,7 @@ class RuntimeCache {
 		);
 	}
 
-	public static function dump(): void {
+	public static function clear(): void {
 		unset(self::$cache[debug_backtrace()[0]["class"]]);
 	}
 }

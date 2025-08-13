@@ -2,6 +2,9 @@
 
 namespace lib\Components\Form\Forms;
 
+use lib\Components\Header;
+use lib\Components\Button\Enums\Type;
+use lib\Components\Icon\Enums\IconType;
 use lib\Components\Button\ButtonFactory;
 use lib\Components\Form\Forms\Enums\Method;
 
@@ -25,13 +28,21 @@ class FormPost extends Form {
 		$method = $this->getMethod()->value;
 		$contents = implode("", $this->getContents());
 
-		$submitButton = ButtonFactory::submit("Submit");
+		$cancelButton = ButtonFactory::link("Cancel", Header::getBackLink())
+			->setType(Type::DANGER)
+			->setIcon(IconType::BAN);
+		$submitButton = ButtonFactory::submit("Submit")
+			->setType(Type::SUCCESS)
+			->setIcon(IconType::PAPER_PLANE);
 
 		return <<<HTML
 			<form method="$method" action="#">
 				<div class="flex flex-col gap-4">
 					<div class="flex flex-col gap-2">$contents</div>
-					<div class="">$submitButton</div>
+					<div class="flex gap-2">
+						<div>$cancelButton</div>
+						<div>$submitButton</div>
+					</div>
 				</div>
 			</form>
 		HTML;

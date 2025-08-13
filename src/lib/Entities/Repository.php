@@ -40,7 +40,7 @@ abstract class Repository implements RepositoryInterface {
 		$delete = new QueryDelete(self::$tableName);
 		$delete->where("id", $entity->getId());
 
-		RuntimeCache::dump();
+		RuntimeCache::clear();
 
 		Query::execute($delete);
 	}

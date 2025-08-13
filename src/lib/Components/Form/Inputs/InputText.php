@@ -40,9 +40,11 @@ class InputText extends Input {
 					autocomplete="off"
 					title="Please fill in this field"
 					class="
+						w-full appearance-none
 						border rounded-md px-3 py-1.5 bg-white
 						border-gray-300 focus:border-blue-400
 						outline-sky-500
+						transition-colors duration-200
 					"
 				/>
 			</div>

@@ -2,8 +2,11 @@
 
 namespace lib\Components;
 
+use lib\Components\Icon\Enums\IconType;
+use lib\Components\Button\ButtonFactory;
 class Header {
 	private static string|null $header = null;
+	private static string|null $backLink = null;
 
 	public static function printTitle(string $title): void {
 		global $SITE_NAME;
@@ -46,6 +49,10 @@ class Header {
 		$links = array_merge([["Home", "/"]], $items);
 		$recentLink = $links[array_key_last($links)];
 
+		self::$backLink = $recentLink[1];
+		$backButton = ButtonFactory::link("Back", Header::getBackLink())
+			->setIcon(IconType::ARROW_LEFT_LONG);
+
 		$breadcrumbBody = [];
 		foreach ($links as $link)
 			$breadcrumbBody[] = getBreadcrumbLink($link[0], $link[1]);
@@ -60,15 +67,16 @@ class Header {
 				</ol>
 			</nav>
 			<div class="flex items-center gap-4 mb-2">
-				<a href="$recentLink[1]" class="underline px-4 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white decoration-sky-600 hover:decoration-sky-700">
-					<i class="fas fa-left-long me-2"></i>
-					<span>Back</span>
-				</a>
+				$backButton
 				<h1 class="text-2xl font-bold flex gap-2">
 					<span class="text-gray-500">#</span>
 					<span class="text-gray-800">$header</span>
 				</h1>
 			</div>
 		HTML;
+	}
+
+	public static function getBackLink(): string {
+		return self::$backLink;
 	}
 }

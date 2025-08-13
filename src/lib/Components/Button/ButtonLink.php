@@ -25,6 +25,7 @@ class ButtonLink extends Button {
 		$id = $this->getId();
 		$label = $this->getLabel();
 
+		$icon = $this->getIcon() ?? "";
 		$defaultClasses = $this->getDefaultClasses();
 		$color = $this->getColor();
 
@@ -34,7 +35,7 @@ class ButtonLink extends Button {
 				class="$defaultClasses $color"
 				href="$this->link"
 			>
-				<span>$label</span>
+				<span>$icon$label</span>
 			</a>
 		HTML;
 	}

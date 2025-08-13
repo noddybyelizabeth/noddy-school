@@ -20,6 +20,7 @@ class ButtonSubmit extends Button {
 		$id = $this->getId();
 		$label = $this->getLabel();
 
+		$icon = $this->getIcon() ?? "";
 		$defaultClasses = $this->getDefaultClasses();
 		$color = $this->getColor();
 
@@ -29,7 +30,7 @@ class ButtonSubmit extends Button {
 				class="$defaultClasses $color"
 				type="submit"
 			>
-				<span>$label</span>
+				<span>$icon$label</span>
 			</button>
 		HTML;
 	}
