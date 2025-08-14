@@ -15,6 +15,9 @@ Header::printBreadcrumb([
 	["Users", "/users"],
 ]);
 
+echo "Test message";
+echo "This is from my tablet editing lol";
+
 Paragraph::text(
 	"Add new users by assigning roles, access levels, and login credentials to manage system access.",
 )->print();
