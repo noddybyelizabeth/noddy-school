@@ -58,6 +58,7 @@ class Table extends Component {
 		$headCells = $this->headCells;
 		$bodyRows = $this->bodyRows;
 
+		$headCells[] = TableCell::createHeader();
 		$head = implode("", $headCells);
 
 		$colGroups = [];
@@ -80,6 +81,7 @@ class Table extends Component {
 		$body = [];
 		foreach ($bodyRows as $bodyCells) {
 			$bodyRow = [];
+			$bodyCells[] = TableCell::create();
 			foreach ($bodyCells as $key => $bodyCell) {
 				$headCell = $headCells[$key];
 				$bodyCell->setAlignment($headCell->getAlignment());

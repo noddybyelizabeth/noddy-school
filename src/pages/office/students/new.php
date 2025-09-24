@@ -10,13 +10,13 @@ use lib\Components\Layout\Container\Cell;
 use lib\Components\Form\Forms\FormFactory;
 use lib\Components\Form\Inputs\InputFactory;
 
-Header::printTitle("New User");
+Header::printTitle("New Student");
 Header::printBreadcrumb([
-	["Users", "/users"],
+	["Students", "/students"],
 ]);
 
 Paragraph::text(
-	"Add new users by assigning roles, access levels, and login credentials to manage system access.",
+	"Add new student.",
 )->print();
 
 Spacer::medium()->print();
@@ -27,7 +27,7 @@ FormFactory::post(
 	),
 	Grid::size3(
 		Cell::size1(
-			InputFactory::select("name_title", "Name title"),
+			InputFactory::select("gender", "Gender"),
 		),
 		Cell::size1(
 			InputFactory::text("first_name", "First name"),

@@ -5,6 +5,7 @@ namespace lib\Components\Form\Inputs;
 use lib\Components\Button\Enums\Type;
 use lib\Components\Icon\Enums\IconType;
 use lib\Components\Button\ButtonFactory;
+
 class InputImage extends Input {
 	protected function __construct(
 		private readonly string $name,
@@ -52,7 +53,7 @@ class InputImage extends Input {
 							<div>$buttonRemove</div>
 						</div>
 						<div class="text-gray-500">
-							Accept PNG,JPG,JPEG or GIF. Max 2 MB.
+							Accept JPG,JPEG or PNG. Max 2 MB.
 						</div>
 					</div>
 				</div>

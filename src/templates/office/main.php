@@ -18,6 +18,9 @@ namespace templates;
 		<a href="/users" class="flex items-center px-4 py-3 hover:bg-gray-100">
 			<span class="ml-3">Users</span>
 		</a>
+		<a href="/students" class="flex items-center px-4 py-3 hover:bg-gray-100">
+			<span class="ml-3">Students</span>
+		</a>
 		<a href="/database" class="flex items-center px-4 py-3 hover:bg-gray-100">
 			<span class="ml-3">Database</span>
 		</a>

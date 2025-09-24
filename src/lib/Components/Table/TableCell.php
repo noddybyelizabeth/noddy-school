@@ -12,12 +12,12 @@ class TableCell {
 		private bool            $isHeader = false,
 	) {}
 
-	public static function createHeader(string $text): TableCell {
+	public static function createHeader(string $text = ""): TableCell {
 		$tableCell = new TableCell($text);
 		$tableCell->isHeader = true;
 		return $tableCell;
 	}
-	public static function create(string $text): TableCell {
+	public static function create(string $text = ""): TableCell {
 		return new TableCell($text);
 	}
 
